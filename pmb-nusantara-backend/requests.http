@@ -1,0 +1,40 @@
+@base = http://localhost:3000
+
+### 1. POST - buat data (catat ID dari respons)
+POST {{base}}/pendaftar
+Content-Type: application/json
+
+{"nama":"Andi Pratama","nik":"3201010101010101","prodi":"Sistem Informasi","jalur":"Reguler"}
+
+### 2. GET - seluruh data
+GET {{base}}/pendaftar
+
+### 3. GET - detail (ubah ID jika perlu)
+GET {{base}}/pendaftar/1
+
+### 4. PATCH - ubah status
+PATCH {{base}}/pendaftar/1
+Content-Type: application/json
+
+{"status":"Terverifikasi"}
+
+### 5. DELETE - hapus (jalankan paling akhir)
+DELETE {{base}}/pendaftar/1
+
+### 6. GET - pastikan data tersimpan setelah restart server
+GET {{base}}/pendaftar
+
+### 7. Error validasi 400
+POST {{base}}/pendaftar
+Content-Type: application/json
+
+{"nama":"A","nik":"123","prodi":"Tidak Ada","jalur":"Reguler"}
+
+### 8. Error tidak ditemukan 404
+GET {{base}}/pendaftar/99999
+
+### 9. Error NIK duplikat 409 (jalankan POST pertama dulu)
+POST {{base}}/pendaftar
+Content-Type: application/json
+
+{"nama":"Andi Duplikat","nik":"3201010101010101","prodi":"Manajemen","jalur":"Prestasi"}

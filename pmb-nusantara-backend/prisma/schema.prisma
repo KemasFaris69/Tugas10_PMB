@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pendaftar {
+  id            Int     @id @default(autoincrement())
+  noPendaftaran String  @unique
+  nama          String
+  nik           String  @unique @db.VarChar(16)
+  prodi         String
+  jalur         String
+  status        String  @default("Menunggu Verifikasi")
+  tanggalDaftar String
+  aktif         Boolean @default(true)
+}
